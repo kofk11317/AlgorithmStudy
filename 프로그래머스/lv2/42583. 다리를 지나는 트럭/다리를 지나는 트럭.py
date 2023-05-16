@@ -1,20 +1,20 @@
-from collections import deque
+from collections import deque#앞에가 먼저 나가야 하기 때문에 큐 활용해서 풀어봄
 
 def solution(bridge_length, weight, truck_weights):
-    sec = 0
-    sum_weights = 0
-    bridge = deque([0] * bridge_length)
-    truck_weights = deque(truck_weights)
+    cnt = 0
+    hap = 0
+    dari = deque([0] * bridge_length)#앞뒤로 추가하거나 삭제해야하기 때문에 큐 사용
+    truck_weights = deque(truck_weights) #앞에가 먼저 나가야 하기 때문에 큐 활용해서 풀어봄
 
-    while truck_weights or sum_weights > 0:
-        sum_weights -= bridge.popleft()
+    while truck_weights or hap > 0:
+        hap -= dari.popleft()
 
-        if truck_weights and sum_weights + truck_weights[0] <= weight:
+        if truck_weights and hap + truck_weights[0] <= weight:
             truck = truck_weights.popleft()
-            sum_weights += truck
-            bridge.append(truck)
+            hap += truck
+            dari.append(truck)
         else:
-            bridge.append(0)
-        sec += 1
+            dari.append(0)
+        cnt += 1
 
-    return sec
+    return cnt
