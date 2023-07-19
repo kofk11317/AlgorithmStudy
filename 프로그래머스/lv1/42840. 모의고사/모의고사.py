@@ -18,7 +18,6 @@ def solution(answers):
     Max=max(score1,score2,score3)
         #가장 높은 점수와 그 점수와 같은 수준으로 맞은 애를 찾았을때 결과에 append해줌
     if Max == score1:
-
         result.append(1)
     if Max == score2:
         result.append(2)
